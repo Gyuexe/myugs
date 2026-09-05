@@ -1,45 +1,62 @@
-// Replace this content block with your own profile, credentials, and email.
+// Update this content block when Yusuf adds new credentials or contact details.
 const profile = {
-  initials: "NA",
-  name: "Nama Anda",
-  role: "Kreator digital & problem solver",
-  location: "Indonesia",
-  email: "emailanda@gmail.com",
-  availability: "Terbuka untuk kolaborasi",
-  focus: "Ide, sistem, dan dampak",
+  initials: "YG",
+  name: "Yusuf Ghondur",
+  role: "Teknisi IT & Content Marketing",
+  company: "Barcom Solo",
+  location: "Karanganyar, Jawa Tengah",
+  education: "S1 Informatika - Universitas Siber Muhammadiyah Yogyakarta",
+  email: "gmailanda@gmail.com",
+  availability: "Terbuka untuk diskusi & kolaborasi",
+  focus: "IT Support, konten, dan web development",
 };
 
-const certifications = [
+const skills = [
   {
     number: "01",
-    title: "Nama sertifikasi pertama",
-    issuer: "Lembaga penerbit",
-    year: "Tahun terbit",
-    description:
-      "Tambahkan konteks singkat tentang kompetensi atau pembelajaran yang dibuktikan oleh sertifikasi ini.",
+    category: "Bidang teknis",
+    title: "IT Support",
+    items: [
+      "Perakitan dan perbaikan PC/laptop",
+      "Instalasi OS dan software",
+      "Troubleshooting hardware dan software",
+      "Maintenance perangkat IT",
+      "Dasar jaringan komputer: IP, LAN, dan sharing",
+    ],
   },
   {
     number: "02",
-    title: "Nama sertifikasi kedua",
-    issuer: "Lembaga penerbit",
-    year: "Tahun terbit",
-    description:
-      "Gunakan ruang ini untuk menjelaskan keahlian praktis yang Anda peroleh dan terapkan.",
+    category: "Konten & promosi",
+    title: "Content Marketing",
+    items: [
+      "Pembuatan konten untuk media sosial",
+      "Copywriting ringan untuk promosi",
+      "Pengelolaan jadwal konten",
+      "Pemahaman dasar digital marketing",
+      "Dokumentasi kegiatan untuk kebutuhan branding",
+    ],
   },
   {
     number: "03",
-    title: "Nama sertifikasi ketiga",
-    issuer: "Lembaga penerbit",
-    year: "Tahun terbit",
-    description:
-      "Tampilkan kredensial yang paling relevan dengan arah karier atau layanan personal Anda.",
+    category: "Sedang dipelajari",
+    title: "Pengembangan",
+    items: [
+      "Logika pemrograman dan algoritma",
+      "Dasar web development: HTML, CSS, dan JavaScript",
+      "Pengembangan tools sederhana untuk mendukung teknisi dan marketing",
+    ],
   },
-];
-
-const principles = [
-  ["01", "Rasa ingin tahu", "Memulai dari pertanyaan yang tepat sebelum mencari jawaban."],
-  ["02", "Proses yang sadar", "Menyusun keputusan dengan tujuan, konteks, dan manusia di dalamnya."],
-  ["03", "Dampak yang nyata", "Mengutamakan karya yang berguna, mudah dipahami, dan bisa berkembang."],
+  {
+    number: "04",
+    category: "Cara bekerja",
+    title: "Soft Skill",
+    items: [
+      "Bekerja mandiri maupun dalam tim",
+      "Memadukan kebutuhan teknisi dan marketing",
+      "Disiplin waktu saat kerja sambil kuliah online",
+      "Cepat mempelajari hal teknis maupun non-teknis",
+    ],
+  },
 ];
 
 function ArrowUpRightIcon() {
@@ -85,6 +102,7 @@ export default function Home() {
             <a href="#intro">Profil</a>
             <a href="#certifications">Sertifikasi</a>
             <a href="#about">Biografi</a>
+            <a href="#skills">Keahlian</a>
           </nav>
 
           <a className="header-contact" href={`mailto:${profile.email}`}>
@@ -104,15 +122,16 @@ export default function Home() {
               </p>
 
               <h1 id="hero-title">
-                Merancang <em>makna</em>
+                Merawat teknologi,
                 <br />
-                untuk setiap jejak <span>digital.</span>
+                merangkai <em>cerita digital.</em>
               </h1>
 
               <p className="hero-introduction">
-                Halo, saya <strong>{profile.name}</strong>, {profile.role.toLowerCase()} yang percaya
-                bahwa ide yang baik akan terasa lebih kuat saat disampaikan dengan jernih dan
-                penuh tujuan.
+                Halo, saya <strong>{profile.name}</strong>. Saya bekerja sebagai {profile.role} di{" "}
+                <strong>{profile.company}</strong>, menangani perangkat, troubleshooting, instalasi,
+                sekaligus konten promosi dan branding perusahaan. Sambil bekerja, saya menempuh S1
+                Informatika secara online di Universitas Siber Muhammadiyah Yogyakarta.
               </p>
 
               <div className="hero-actions">
@@ -127,11 +146,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hero-visual" aria-label="Ruang untuk foto profil atau monogram Anda">
+            <div className="hero-visual" aria-label={`Monogram ${profile.name}`}>
               <div className="portrait-card">
                 <div className="portrait-topline">
-                  <span>VISUAL ID</span>
-                  <span>01 / 01</span>
+                  <span>YUSUF GHONDUR</span>
+                  <span>IT / CONTENT</span>
                 </div>
                 <div className="portrait-disc portrait-disc-large" aria-hidden="true" />
                 <div className="portrait-disc portrait-disc-small" aria-hidden="true" />
@@ -139,21 +158,21 @@ export default function Home() {
                   {profile.initials}
                 </span>
                 <div className="portrait-caption">
-                  <span>{profile.name}</span>
-                  <span>Personal portfolio</span>
+                  <span>{profile.company}</span>
+                  <span>Kerja & belajar</span>
                 </div>
               </div>
 
               <dl className="profile-facts">
                 <div>
-                  <dt>Berbasis di</dt>
+                  <dt>Domisili</dt>
                   <dd>{profile.location}</dd>
                 </div>
                 <div>
-                  <dt>Status</dt>
+                  <dt>Pendidikan</dt>
                   <dd>
                     <span className="status-dot" aria-hidden="true" />
-                    {profile.availability}
+                    {profile.education}
                   </dd>
                 </div>
               </dl>
@@ -175,37 +194,38 @@ export default function Home() {
                   Kredensial
                 </p>
                 <h2 id="certifications-title">
-                  Belajar dengan arah,
+                  Terus belajar,
                   <br />
-                  tumbuh dengan <em>bukti.</em>
+                  sambil membangun <em>pengalaman.</em>
                 </h2>
               </div>
               <p>
-                Pilih sertifikasi yang paling relevan untuk memperlihatkan cara Anda mengasah
-                keahlian dan memperdalam bidang yang ditekuni.
+                Bagian ini disiapkan untuk mendokumentasikan kursus dan sertifikasi yang melengkapi
+                perjalanan Yusuf di bidang IT, web development, dan digital marketing.
               </p>
             </div>
 
             <div className="certificate-list">
-              {certifications.map((certificate) => (
-                <article className="certificate-card" key={certificate.number}>
-                  <span className="certificate-number">{certificate.number}</span>
-                  <div className="certificate-main">
-                    <p>{certificate.issuer}</p>
-                    <h3>{certificate.title}</h3>
-                    <p className="certificate-description">{certificate.description}</p>
-                  </div>
-                  <div className="certificate-year">
-                    <span>Diterbitkan</span>
-                    <strong>{certificate.year}</strong>
-                  </div>
-                </article>
-              ))}
+              <article className="certificate-card certificate-pending">
+                <span className="certificate-number">--</span>
+                <div className="certificate-main">
+                  <p>Dalam pengembangan</p>
+                  <h3>Sertifikasi lagi disiapin, fokus kuliah dan kerja dulu.</h3>
+                  <p className="certificate-description">
+                    Daftar kredensial akan ditambahkan bertahap seiring pembelajaran dan pengalaman
+                    baru yang diperoleh.
+                  </p>
+                </div>
+                <div className="certificate-year">
+                  <span>Fokus saat ini</span>
+                  <strong>Kuliah & kerja</strong>
+                </div>
+              </article>
             </div>
 
             <p className="content-note">
-              Tiga kartu ini adalah ruang untuk sertifikasi utama Anda. Ganti judul, lembaga,
-              tahun, dan deskripsinya dari blok data di atas halaman ini.
+              Sertifikasi akan ditambahkan setelah Yusuf menyelesaikan pelatihan atau memperoleh
+              kredensial yang relevan.
             </p>
           </div>
         </section>
@@ -218,9 +238,9 @@ export default function Home() {
                 Biografi
               </p>
               <h2 id="about-title">
-                Cerita di balik
+                Perjalanan yang tumbuh
                 <br />
-                setiap <em>karya.</em>
+                dari rasa <em>ingin tahu.</em>
               </h2>
               <div className="about-stamp" aria-hidden="true">
                 <span>Personal</span>
@@ -231,48 +251,81 @@ export default function Home() {
 
             <div className="about-content">
               <p className="lead-copy">
-                Saya percaya portofolio yang baik tidak berhenti pada hasil akhir. Ia memberi
-                ruang untuk melihat rasa ingin tahu, keputusan, dan proses yang membentuk sebuah
-                karya.
+                Dari ngoprek PC sampai menyusun konten yang membuat layanan lebih mudah dikenal.
               </p>
               <p>
-                Gunakan bagian ini untuk memperkenalkan perjalanan Anda dengan lebih personal:
-                titik awal yang membentuk minat, pengalaman yang mengubah cara pandang, serta
-                arah yang sedang Anda tuju. Tulis dengan suara sendiri agar orang yang membaca
-                tidak hanya mengenal apa yang Anda kerjakan, tetapi juga alasan di baliknya.
+                Saya berasal dari Kabupaten Karanganyar, Jawa Tengah. Awalnya saya suka ngoprek PC,
+                bongkar-pasang komponen, mencoba instal ulang, sampai akhirnya bekerja di Barcom Solo
+                sebagai teknisi IT. Di sana saya banyak belajar tentang hardware, software, jaringan
+                dasar, serta penanganan masalah teknis di lapangan.
               </p>
               <p>
-                Anda dapat menambahkan pengalaman profesional, proyek penting, pendidikan, atau
-                momen belajar yang relevan. Pilih detail yang membantu calon kolaborator memahami
-                nilai unik yang Anda bawa ke dalam setiap percakapan dan pekerjaan.
+                Peran saya juga berkembang ke content marketing. Saya belajar membuat konten promosi,
+                mengelola media sosial, menulis caption, dan memikirkan strategi agar lebih banyak
+                orang mengenal produk serta layanan perusahaan. Perpaduan dua peran ini membuat saya
+                melihat bahwa IT bukan hanya soal memperbaiki perangkat, tetapi juga komunikasi dan
+                branding.
+              </p>
+              <p>
+                Untuk memperkuat dasar teknis dan mengembangkan kemampuan programming, saya melanjutkan
+                S1 Informatika secara online di Universitas Siber Muhammadiyah Yogyakarta. Ke depan,
+                saya ingin menjadi profesional yang mampu menangani kebutuhan teknis sekaligus memahami
+                cara menyampaikan nilai produk kepada orang lain.
               </p>
 
               <dl className="biography-facts">
                 <div>
-                  <dt>Berbasis di</dt>
+                  <dt>Domisili</dt>
                   <dd>{profile.location}</dd>
+                </div>
+                <div>
+                  <dt>Pendidikan</dt>
+                  <dd>{profile.education}</dd>
                 </div>
                 <div>
                   <dt>Fokus</dt>
                   <dd>{profile.focus}</dd>
                 </div>
-                <div>
-                  <dt>Nilai kerja</dt>
-                  <dd>Jelas, ingin tahu, dan kolaboratif</dd>
-                </div>
               </dl>
+            </div>
+          </div>
+        </section>
 
-              <div className="principle-list">
-                {principles.map(([number, title, description]) => (
-                  <article className="principle" key={number}>
-                    <span>{number}</span>
-                    <div>
-                      <h3>{title}</h3>
-                      <p>{description}</p>
-                    </div>
-                  </article>
-                ))}
+        <section id="skills" className="skills-section" aria-labelledby="skills-title">
+          <div className="frame">
+            <div className="section-heading section-heading-light">
+              <div>
+                <p className="section-kicker">
+                  <span>04</span>
+                  Keahlian & fokus
+                </p>
+                <h2 id="skills-title">
+                  Teknis, konten,
+                  <br />
+                  dan terus <em>bertumbuh.</em>
+                </h2>
               </div>
+              <p>
+                Perpaduan kemampuan yang Yusuf gunakan saat ini dan arah yang sedang dipelajari untuk
+                mendukung karier di dunia teknologi.
+              </p>
+            </div>
+
+            <div className="skills-grid">
+              {skills.map((skill) => (
+                <article className="skill-card" key={skill.number}>
+                  <div className="skill-card-topline">
+                    <span>{skill.number}</span>
+                    <p>{skill.category}</p>
+                  </div>
+                  <h3>{skill.title}</h3>
+                  <ul>
+                    {skill.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -281,7 +334,7 @@ export default function Home() {
           <div className="frame contact-grid">
             <div>
               <p className="section-kicker">
-                <span>04</span>
+                <span>05</span>
                 Mari terhubung
               </p>
               <h2 id="contact-title">
@@ -293,8 +346,8 @@ export default function Home() {
 
             <div className="contact-content">
               <p>
-                Saya selalu terbuka untuk percakapan yang baik, peluang kolaborasi, atau sekadar
-                bertukar perspektif. Kirimkan pesan dan mari mulai dari sana.
+                Butuh bantuan teknis ringan, ingin berdiskusi soal perangkat, atau ngobrol tentang
+                konten dan IT? Kirimkan pesan dan mari mulai dari sana.
               </p>
               <a className="email-link" href={`mailto:${profile.email}`}>
                 <MailIcon />

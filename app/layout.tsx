@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nama Anda | Personal Portfolio",
+  title: "Yusuf Ghondur | IT & Content Marketing",
   description:
-    "Personal portfolio untuk membagikan profil, sertifikasi, perjalanan, dan cara terhubung.",
+    "Portfolio Yusuf Ghondur, Teknisi IT dan Content Marketing di Barcom Solo.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
