@@ -351,7 +351,7 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Pengalaman industri yang memperluas cara Yusuf melihat ruang kerja, teknologi, dan
+                Pengalaman industri yang memperluas cara Saya melihat ruang kerja, teknologi, dan
                 proses di lapangan.
               </p>
             </div>
@@ -459,7 +459,7 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Perpaduan kemampuan yang Yusuf gunakan saat ini dan arah yang sedang dipelajari untuk
+                Perpaduan kemampuan yang Saya gunakan saat ini dan arah yang sedang dipelajari untuk
                 mendukung karier di dunia teknologi.
               </p>
             </div>
