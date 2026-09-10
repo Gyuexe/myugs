@@ -1,3 +1,6 @@
+import Image from "next/image";
+import ThemeToggle from "./theme-toggle";
+
 // Update this content block when Yusuf adds new credentials or contact details.
 const profile = {
   initials: "YG",
@@ -6,7 +9,9 @@ const profile = {
   company: "Barcom Solo",
   location: "Karanganyar, Jawa Tengah",
   education: "S1 Informatika - Universitas Siber Muhammadiyah Yogyakarta",
-  email: "gmailanda@gmail.com",
+  email: "ghondursangshobar@gmail.com",
+  // Replace this with Yusuf's Instagram profile URL when it is ready to publish.
+  instagram: "https://www.instagram.com/",
   availability: "Terbuka untuk diskusi & kolaborasi",
   focus: "IT Support, konten, dan web development",
 };
@@ -59,6 +64,77 @@ const skills = [
   },
 ];
 
+const credentials = [
+  {
+    number: "01",
+    preview: "award",
+    kind: "Penghargaan akademik",
+    title: "Lulusan Terbaik III",
+    issuer: "SMK Negeri Jumantono",
+    date: "4 Mei 2026",
+    value: "III",
+    previewLabel: "TJKT",
+    description:
+      "Penghargaan sebagai Lulusan Terbaik III kelas XII TJKT 3 pada kompetensi keahlian Teknik Jaringan Komputer dan Telekomunikasi.",
+  },
+  {
+    number: "02",
+    preview: "competency",
+    kind: "Uji kompetensi",
+    title: "Sertifikat Uji Kompetensi TKJ",
+    issuer: "PT Lintas Data Prima POP Solo",
+    date: "7 April 2026",
+    value: "A",
+    previewLabel: "Sangat kompeten",
+    description:
+      "Uji kompetensi Teknik Jaringan Komputer dan Telekomunikasi dengan fokus perancangan arsitektur, layanan, perangkat lunak, dan sarana jaringan private cloud.",
+  },
+  {
+    number: "03",
+    preview: "toeic",
+    kind: "Kemampuan bahasa Inggris",
+    title: "TOEIC Listening & Reading",
+    issuer: "ETS / Direktorat SMK",
+    date: "29 April 2026",
+    value: "565",
+    previewLabel: "Level B1",
+    description:
+      "Skor TOEIC 565 untuk kemampuan Listening dan Reading, setara dengan level B1 sesuai informasi sertifikat.",
+  },
+];
+
+const internship = {
+  company: "Solo Technopark",
+  type: "Praktik Kerja Industri",
+  field: "Building and Area Development",
+  period: "19 Agustus 2025 - 30 Januari 2026",
+  description:
+    "Menjalani Praktik Kerja Industri di kawasan sains dan teknologi Solo Technopark sebagai bagian dari pembelajaran Teknik Jaringan Komputer dan Telekomunikasi.",
+};
+
+const technologies = [
+  {
+    name: "PHP 8.3",
+    role: "Backend fundamentals",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+  },
+  {
+    name: "Next.js",
+    role: "React framework",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+  },
+  {
+    name: "HTML5",
+    role: "Semantic structure",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+  },
+  {
+    name: "CSS3",
+    role: "Modern interface",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+  },
+];
+
 function ArrowUpRightIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
@@ -84,6 +160,25 @@ function MailIcon() {
   );
 }
 
+function InstagramIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="17.3" cy="6.8" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+function LockIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+      <rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M8 10V7a4 4 0 1 1 8 0v3" stroke="currentColor" strokeWidth="1.7" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <div className="page-shell">
@@ -101,14 +196,18 @@ export default function Home() {
           <nav className="site-nav" aria-label="Navigasi utama">
             <a href="#intro">Profil</a>
             <a href="#certifications">Sertifikasi</a>
+            <a href="#experience">Pengalaman</a>
             <a href="#about">Biografi</a>
             <a href="#skills">Keahlian</a>
           </nav>
 
-          <a className="header-contact" href={`mailto:${profile.email}`}>
-            <span>Hubungi saya</span>
-            <ArrowUpRightIcon />
-          </a>
+          <div className="header-actions">
+            <ThemeToggle />
+            <a className="header-contact" href={`mailto:${profile.email}`}>
+              <span>Hubungi saya</span>
+              <ArrowUpRightIcon />
+            </a>
+          </div>
         </div>
       </header>
 
@@ -194,39 +293,93 @@ export default function Home() {
                   Kredensial
                 </p>
                 <h2 id="certifications-title">
-                  Terus belajar,
+                  Bukti belajar,
                   <br />
-                  sambil membangun <em>pengalaman.</em>
+                  siap <em>bertumbuh.</em>
                 </h2>
               </div>
               <p>
-                Bagian ini disiapkan untuk mendokumentasikan kursus dan sertifikasi yang melengkapi
-                perjalanan Yusuf di bidang IT, web development, dan digital marketing.
+                Kredensial yang membentuk fondasi Yusuf di bidang Teknik Jaringan Komputer dan
+                Telekomunikasi, cloud, serta kemampuan bahasa Inggris.
               </p>
             </div>
 
-            <div className="certificate-list">
-              <article className="certificate-card certificate-pending">
-                <span className="certificate-number">--</span>
-                <div className="certificate-main">
-                  <p>Dalam pengembangan</p>
-                  <h3>Sertifikasi lagi disiapin, fokus kuliah dan kerja dulu.</h3>
-                  <p className="certificate-description">
-                    Daftar kredensial akan ditambahkan bertahap seiring pembelajaran dan pengalaman
-                    baru yang diperoleh.
-                  </p>
-                </div>
-                <div className="certificate-year">
-                  <span>Fokus saat ini</span>
-                  <strong>Kuliah & kerja</strong>
-                </div>
-              </article>
+            <div className="credentials-grid">
+              {credentials.map((credential) => (
+                <article className="credential-card" key={credential.number}>
+                  <div className={`credential-preview credential-preview-${credential.preview}`} aria-hidden="true">
+                    <span className="preview-number">{credential.number}</span>
+                    <span className="preview-label">Preview ringkas</span>
+                    <div className="preview-seal">{credential.previewLabel}</div>
+                    <strong>{credential.value}</strong>
+                    <span className="preview-line" />
+                    <span className="preview-line preview-line-short" />
+                  </div>
+                  <div className="credential-content">
+                    <p>{credential.kind}</p>
+                    <h3>{credential.title}</h3>
+                    <p className="credential-description">{credential.description}</p>
+                    <div className="credential-meta">
+                      <span>{credential.issuer}</span>
+                      <span>{credential.date}</span>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
 
-            <p className="content-note">
-              Sertifikasi akan ditambahkan setelah Yusuf menyelesaikan pelatihan atau memperoleh
-              kredensial yang relevan.
+            <p className="document-privacy-note">
+              <LockIcon />
+              Preview hanya menampilkan ringkasan publik. Dokumen asli disimpan privat dan tersedia
+              untuk kebutuhan verifikasi melalui kontak.
             </p>
+          </div>
+        </section>
+
+        <section id="experience" className="experience-section" aria-labelledby="experience-title">
+          <div className="frame">
+            <div className="section-heading">
+              <div>
+                <p className="section-kicker">
+                  <span>03</span>
+                  Pengalaman
+                </p>
+                <h2 id="experience-title">
+                  Belajar dari
+                  <br />
+                  praktik <em>langsung.</em>
+                </h2>
+              </div>
+              <p>
+                Pengalaman industri yang memperluas cara Yusuf melihat ruang kerja, teknologi, dan
+                proses di lapangan.
+              </p>
+            </div>
+
+            <article className="experience-card">
+              <div className="experience-preview" aria-hidden="true">
+                <span>STP</span>
+                <strong>PKL</strong>
+                <span>2025 / 2026</span>
+                <div className="experience-preview-grid" />
+              </div>
+              <div className="experience-content">
+                <p>{internship.type}</p>
+                <h3>{internship.company}</h3>
+                <p className="experience-field">{internship.field}</p>
+                <p>{internship.description}</p>
+                <dl>
+                  <div>
+                    <dt>Periode</dt>
+                    <dd>{internship.period}</dd>
+                  </div>
+                  <div>
+                    <dt>Bidang</dt>
+                    <dd>{internship.field}</dd>
+                  </div>
+                </dl>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -234,7 +387,7 @@ export default function Home() {
           <div className="frame about-grid">
             <div className="about-intro">
               <p className="section-kicker">
-                <span>03</span>
+                <span>04</span>
                 Biografi
               </p>
               <h2 id="about-title">
@@ -296,7 +449,7 @@ export default function Home() {
             <div className="section-heading section-heading-light">
               <div>
                 <p className="section-kicker">
-                  <span>04</span>
+                  <span>05</span>
                   Keahlian & fokus
                 </p>
                 <h2 id="skills-title">
@@ -327,6 +480,26 @@ export default function Home() {
                 </article>
               ))}
             </div>
+
+            <div className="technology-stack" aria-labelledby="technology-title">
+              <div>
+                <p className="technology-kicker">Web development</p>
+                <h3 id="technology-title">Teknologi yang sedang saya gunakan.</h3>
+              </div>
+              <div className="technology-list">
+                {technologies.map((technology) => (
+                  <article className="technology-card" key={technology.name}>
+                    <div className="technology-icon">
+                      <Image src={technology.icon} alt={`Logo ${technology.name}`} width={48} height={48} />
+                    </div>
+                    <div>
+                      <h4>{technology.name}</h4>
+                      <p>{technology.role}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -334,7 +507,7 @@ export default function Home() {
           <div className="frame contact-grid">
             <div>
               <p className="section-kicker">
-                <span>05</span>
+                <span>06</span>
                 Mari terhubung
               </p>
               <h2 id="contact-title">
@@ -349,11 +522,24 @@ export default function Home() {
                 Butuh bantuan teknis ringan, ingin berdiskusi soal perangkat, atau ngobrol tentang
                 konten dan IT? Kirimkan pesan dan mari mulai dari sana.
               </p>
-              <a className="email-link" href={`mailto:${profile.email}`}>
-                <MailIcon />
-                <span>{profile.email}</span>
-                <ArrowUpRightIcon />
-              </a>
+              <div className="contact-links">
+                <a className="email-link" href={`mailto:${profile.email}`}>
+                  <MailIcon />
+                  <span>{profile.email}</span>
+                  <ArrowUpRightIcon />
+                </a>
+                <a
+                  className="instagram-link"
+                  href={profile.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Buka profil Instagram Yusuf"
+                >
+                  <InstagramIcon />
+                  <span>Instagram</span>
+                  <ArrowUpRightIcon />
+                </a>
+              </div>
               <p className="contact-availability">
                 <span className="status-dot" aria-hidden="true" />
                 {profile.availability}
