@@ -11,7 +11,7 @@ const profile = {
   education: "S1 Informatika - Universitas Siber Muhammadiyah Yogyakarta",
   email: "ghondursangshobar@gmail.com",
   // Replace this with Yusuf's Instagram profile URL when it is ready to publish.
-  instagram: "https://www.instagram.com/",
+  instagram: "https://www.instagram.com/mhd.ysfghsbr",
   availability: "Terbuka untuk diskusi & kolaborasi",
   focus: "IT Support, konten, dan web development",
 };
@@ -299,7 +299,7 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Kredensial yang membentuk fondasi Yusuf di bidang Teknik Jaringan Komputer dan
+                Kredensial yang membentuk Saya di bidang Teknik Jaringan Komputer dan
                 Telekomunikasi, cloud, serta kemampuan bahasa Inggris.
               </p>
             </div>
