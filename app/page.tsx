@@ -1,4 +1,7 @@
 import Image from "next/image";
+import CertificateCarousel from "./certificate-carousel";
+import EntranceMotion from "./entrance-motion";
+import TechnologyMarquee from "./technology-marquee";
 import ThemeToggle from "./theme-toggle";
 
 // Update this content block when Yusuf adds new credentials or contact details.
@@ -133,6 +136,41 @@ const technologies = [
     role: "Modern interface",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
   },
+  {
+    name: "TypeScript",
+    role: "Bahasa website ini",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+  },
+  {
+    name: "JavaScript",
+    role: "Dasar interaksi web",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  },
+  {
+    name: "React",
+    role: "Komponen antarmuka",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+  },
+  {
+    name: "Tailwind CSS",
+    role: "Styling website ini",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+  },
+  {
+    name: "Ubuntu",
+    role: "Eksplorasi sistem operasi",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ubuntu/ubuntu-original.svg",
+  },
+  {
+    name: "Linux",
+    role: "Lingkungan belajar IT",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
+  },
+  {
+    name: "OpenCode",
+    role: "Asisten pengembangan AI",
+    icon: "https://opencode.ai/_build/assets/preview-opencode-logo-light-square-C1O1sac-.png",
+  },
 ];
 
 function ArrowUpRightIcon() {
@@ -182,6 +220,7 @@ function LockIcon() {
 export default function Home() {
   return (
     <div className="page-shell">
+      <EntranceMotion />
       <a className="skip-link" href="#intro">
         Lewati ke konten
       </a>
@@ -215,25 +254,25 @@ export default function Home() {
         <section id="intro" className="hero-section" aria-labelledby="hero-title">
           <div className="hero-grid frame">
             <div className="hero-copy">
-              <p className="section-kicker">
+              <p className="section-kicker" data-reveal="0">
                 <span>01</span>
                 Profil singkat
               </p>
 
-              <h1 id="hero-title">
+              <h1 id="hero-title" data-reveal="80">
                 Merawat teknologi,
                 <br />
                 merangkai <em>cerita digital.</em>
               </h1>
 
-              <p className="hero-introduction">
+              <p className="hero-introduction" data-reveal="160">
                 Halo, saya <strong>{profile.name}</strong>. Saya bekerja sebagai {profile.role} di{" "}
                 <strong>{profile.company}</strong>, menangani perangkat, troubleshooting, instalasi,
                 sekaligus konten promosi dan branding perusahaan. Sambil bekerja, saya menempuh S1
                 Informatika secara online di Universitas Siber Muhammadiyah Yogyakarta.
               </p>
 
-              <div className="hero-actions">
+              <div className="hero-actions" data-reveal="240">
                 <a className="button button-primary" href="#about">
                   Kenali perjalanan saya
                   <ArrowUpRightIcon />
@@ -245,7 +284,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hero-visual" aria-label={`Monogram ${profile.name}`}>
+            <div className="hero-visual" data-reveal="160" aria-label={`Monogram ${profile.name}`}>
               <div className="portrait-card">
                 <div className="portrait-topline">
                   <span>YUSUF GHONDUR</span>
@@ -286,7 +325,7 @@ export default function Home() {
 
         <section id="certifications" className="certification-section" aria-labelledby="certifications-title">
           <div className="frame">
-            <div className="section-heading section-heading-light">
+            <div className="section-heading section-heading-light" data-reveal="0">
               <div>
                 <p className="section-kicker">
                   <span>02</span>
@@ -304,28 +343,30 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="credentials-grid">
-              {credentials.map((credential) => (
-                <article className="credential-card" key={credential.number}>
-                  <div className={`credential-preview credential-preview-${credential.preview}`} aria-hidden="true">
-                    <span className="preview-number">{credential.number}</span>
-                    <span className="preview-label">Preview ringkas</span>
-                    <div className="preview-seal">{credential.previewLabel}</div>
-                    <strong>{credential.value}</strong>
-                    <span className="preview-line" />
-                    <span className="preview-line preview-line-short" />
-                  </div>
-                  <div className="credential-content">
-                    <p>{credential.kind}</p>
-                    <h3>{credential.title}</h3>
-                    <p className="credential-description">{credential.description}</p>
-                    <div className="credential-meta">
-                      <span>{credential.issuer}</span>
-                      <span>{credential.date}</span>
+            <div data-reveal="80">
+              <CertificateCarousel labels={credentials.map((credential) => credential.title)}>
+                {credentials.map((credential) => (
+                  <article className="credential-card" key={credential.number}>
+                    <div className={`credential-preview credential-preview-${credential.preview}`} aria-hidden="true">
+                      <span className="preview-number">{credential.number}</span>
+                      <span className="preview-label">Preview ringkas</span>
+                      <div className="preview-seal">{credential.previewLabel}</div>
+                      <strong>{credential.value}</strong>
+                      <span className="preview-line" />
+                      <span className="preview-line preview-line-short" />
                     </div>
-                  </div>
-                </article>
-              ))}
+                    <div className="credential-content">
+                      <p>{credential.kind}</p>
+                      <h3>{credential.title}</h3>
+                      <p className="credential-description">{credential.description}</p>
+                      <div className="credential-meta">
+                        <span>{credential.issuer}</span>
+                        <span>{credential.date}</span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </CertificateCarousel>
             </div>
 
             <p className="document-privacy-note">
@@ -338,7 +379,7 @@ export default function Home() {
 
         <section id="experience" className="experience-section" aria-labelledby="experience-title">
           <div className="frame">
-            <div className="section-heading">
+            <div className="section-heading" data-reveal="0">
               <div>
                 <p className="section-kicker">
                   <span>03</span>
@@ -356,7 +397,7 @@ export default function Home() {
               </p>
             </div>
 
-            <article className="experience-card">
+            <article className="experience-card" data-reveal="80">
               <div className="experience-preview" aria-hidden="true">
                 <span>STP</span>
                 <strong>PKL</strong>
@@ -385,7 +426,7 @@ export default function Home() {
 
         <section id="about" className="about-section" aria-labelledby="about-title">
           <div className="frame about-grid">
-            <div className="about-intro">
+            <div className="about-intro" data-reveal="0">
               <p className="section-kicker">
                 <span>04</span>
                 Biografi
@@ -402,7 +443,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="about-content">
+            <div className="about-content" data-reveal="120">
               <p className="lead-copy">
                 Dari ngoprek PC sampai menyusun konten yang membuat layanan lebih mudah dikenal.
               </p>
@@ -446,7 +487,7 @@ export default function Home() {
 
         <section id="skills" className="skills-section" aria-labelledby="skills-title">
           <div className="frame">
-            <div className="section-heading section-heading-light">
+            <div className="section-heading section-heading-light" data-reveal="0">
               <div>
                 <p className="section-kicker">
                   <span>05</span>
@@ -465,8 +506,8 @@ export default function Home() {
             </div>
 
             <div className="skills-grid">
-              {skills.map((skill) => (
-                <article className="skill-card" key={skill.number}>
+              {skills.map((skill, index) => (
+                <article className="skill-card" data-reveal={index % 2 * 100} key={skill.number}>
                   <div className="skill-card-topline">
                     <span>{skill.number}</span>
                     <p>{skill.category}</p>
@@ -481,12 +522,12 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="technology-stack" aria-labelledby="technology-title">
+            <div className="technology-stack" data-reveal="0" aria-labelledby="technology-title">
               <div>
-                <p className="technology-kicker">Web development</p>
-                <h3 id="technology-title">Teknologi yang sedang saya gunakan.</h3>
+                <p className="technology-kicker">Di balik proses</p>
+                <h3 id="technology-title">Stack web & ruang eksplorasi.</h3>
               </div>
-              <div className="technology-list">
+              <TechnologyMarquee>
                 {technologies.map((technology) => (
                   <article className="technology-card" key={technology.name}>
                     <div className="technology-icon">
@@ -498,13 +539,18 @@ export default function Home() {
                     </div>
                   </article>
                 ))}
-              </div>
+              </TechnologyMarquee>
+              <p className="technology-sources">
+                Logo dari <a href="https://devicon.dev/" target="_blank" rel="noopener noreferrer">Devicon</a>
+                {" / "}<a href="https://opencode.ai/brand" target="_blank" rel="noopener noreferrer">OpenCode</a>.
+                {" "}OS dan alat bantu ditampilkan sebagai bagian dari eksplorasi, bukan sertifikasi keahlian.
+              </p>
             </div>
           </div>
         </section>
 
         <section id="contact" className="contact-section" aria-labelledby="contact-title">
-          <div className="frame contact-grid">
+          <div className="frame contact-grid" data-reveal="0">
             <div>
               <p className="section-kicker">
                 <span>06</span>
@@ -550,7 +596,7 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <div className="frame footer-content">
+        <div className="frame footer-content" data-reveal="0">
           <p>© 2026 {profile.name}. Dibuat dengan niat baik.</p>
           <a href="#intro">
             Kembali ke atas

@@ -54,7 +54,8 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 3px solid var(--cyan);
   outline-offset: 4px;
 }
@@ -313,6 +314,8 @@ h1 span {
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
   gap: 0.8rem;
   border: 1px solid transparent;
@@ -329,6 +332,8 @@ h1 span {
 }
 
 .text-link {
+  display: inline-flex;
+  align-items: center;
   gap: 0.62rem;
   border: 1px solid var(--line);
   border-radius: 0.85rem;
@@ -730,6 +735,11 @@ h1 span {
   margin-bottom: 2.4rem;
 }
 
+.about-intro h2 {
+  font-size: clamp(2.5rem, 3.6vw, 3.8rem);
+  line-height: 1;
+}
+
 .about-stamp {
   display: grid;
   width: 11.5rem;
@@ -981,6 +991,7 @@ h1 span {
 }
 
 .contact-content {
+  min-width: 0;
   align-self: end;
   padding-bottom: 0.4rem;
 }
@@ -1005,7 +1016,12 @@ h1 span {
   font-size: clamp(1.1rem, 2vw, 1.75rem);
   font-weight: 800;
   letter-spacing: -0.05em;
-  line-height: 1;
+  line-height: 1.35;
+}
+
+.email-link span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .email-link svg:first-child {
@@ -1050,6 +1066,8 @@ h1 span {
 }
 
 .site-footer a {
+  display: inline-flex;
+  align-items: center;
   gap: 0.45rem;
   color: var(--blue-soft);
 }
@@ -1354,12 +1372,6 @@ h1 span {
 .theme-toggle svg {
   width: 0.95rem;
   height: 0.95rem;
-}
-
-.credentials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
 }
 
 .credential-card {
@@ -1715,7 +1727,7 @@ h1 span {
 
 .technology-stack {
   display: grid;
-  grid-template-columns: minmax(220px, 0.6fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 2rem;
   margin-top: 1rem;
@@ -1744,10 +1756,17 @@ h1 span {
   line-height: 1;
 }
 
-.technology-list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.7rem;
+.technology-sources {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.7rem;
+  line-height: 1.65;
+}
+
+.technology-sources a {
+  color: var(--blue-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .technology-card {
@@ -1849,16 +1868,6 @@ h1 span {
   }
 }
 
-@media (max-width: 1000px) {
-  .credentials-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .technology-stack {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 760px) {
   .header-actions {
     gap: 0.4rem;
@@ -1874,9 +1883,7 @@ h1 span {
     display: none;
   }
 
-  .credentials-grid,
-  .experience-card,
-  .technology-list {
+  .experience-card {
     grid-template-columns: 1fr;
   }
 
@@ -1890,10 +1897,6 @@ h1 span {
 
   .experience-content dl {
     grid-template-columns: 1fr;
-  }
-
-  .technology-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -2039,4 +2042,13 @@ html[data-theme="light"] .site-footer {
   border-top-color: rgba(35, 63, 119, 0.12);
   background: #e7edf9;
   color: var(--ink-muted);
+}
+
+@media (hover: hover) {
+  html[data-theme="light"] .theme-toggle:hover,
+  html[data-theme="light"] .header-contact:hover,
+  html[data-theme="light"] .text-link:hover,
+  html[data-theme="light"] .instagram-link:hover {
+    color: var(--ink);
+  }
 }
