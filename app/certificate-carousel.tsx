@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
 import styles from "./certificate-carousel.module.css";
 
 const motionQuery = "(prefers-reduced-motion: reduce)";
@@ -25,7 +25,7 @@ export default function CertificateCarousel({
   // The server snapshot keeps every certificate accessible until hydration.
   const reducedMotion = useSyncExternalStore(subscribeToMotion, getReducedMotion, () => null);
   const enhanced = reducedMotion !== null;
-  const [index, setIndex] = useState(0);
+  const [selection, setSelection] = useState({ index: 0, animated: false });
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const viewport = useRef<HTMLDivElement>(null);
@@ -33,7 +33,7 @@ export default function CertificateCarousel({
   const ignoreClick = useRef(false);
   const id = useId();
   const count = children.length;
-  const active = count ? index % count : 0;
+  const active = count ? selection.index % count : 0;
   const playing = enhanced && !reducedMotion && !paused && count > 1;
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function CertificateCarousel({
       timer = setInterval(() => {
         // Recheck at the tick so a preference/tab change cannot race the cleanup.
         if (document.visibilityState === "visible" && !getReducedMotion()) {
-          setIndex((current) => (current + 1) % count);
+          setSelection((current) => ({ index: (current.index + 1) % count, animated: true }));
         }
       }, 2000);
     }
@@ -80,7 +80,10 @@ export default function CertificateCarousel({
     if (viewport.current?.contains(document.activeElement)) {
       viewport.current.focus({ preventScroll: true });
     }
-    setIndex((next + count) % count);
+    const target = ((next % count) + count) % count;
+    setSelection((current) =>
+      current.index === target ? current : { index: target, animated: true },
+    );
   }
 
   if (!count) return null;
@@ -92,6 +95,7 @@ export default function CertificateCarousel({
       aria-label="Sertifikat"
       aria-roledescription={enhanced ? "karusel" : undefined}
       data-enhanced={enhanced}
+      data-animated={selection.animated}
       data-reduced-motion={reducedMotion}
       onPointerEnter={(event) => {
         if (event.pointerType === "mouse" || event.pointerType === "pen") setHovered(true);
@@ -215,24 +219,29 @@ export default function CertificateCarousel({
           }
         }}
       >
-        <div
-          className={styles.track}
-          style={enhanced ? { transform: `translateX(-${active * 100}%)` } : undefined}
-        >
-          {children.map((child, slideIndex) => (
-            <div
-              key={slideIndex}
-              id={`${id}-slide-${slideIndex}`}
-              className={styles.slide}
-              role="group"
-              aria-roledescription={enhanced ? "slide" : undefined}
-              aria-label={`${slideIndex + 1} dari ${count}: ${labels[slideIndex] ?? `Sertifikat ${slideIndex + 1}`}`}
-              aria-hidden={enhanced && active !== slideIndex ? true : undefined}
-              inert={enhanced && active !== slideIndex}
-            >
-              {child}
-            </div>
-          ))}
+        <div className={styles.track}>
+          {children.map((child, slideIndex) => {
+            // Circular offsets keep the last/first pair adjacent without cloned content.
+            const distance = (slideIndex - active + count) % count;
+            const offset = distance === 0 ? 0 : distance > count / 2 ? -1 : 1;
+
+            return (
+              <div
+                key={slideIndex}
+                id={`${id}-slide-${slideIndex}`}
+                className={styles.slide}
+                style={{ "--slide-offset": offset } as CSSProperties}
+                data-active={active === slideIndex}
+                role="group"
+                aria-roledescription={enhanced ? "slide" : undefined}
+                aria-label={`${slideIndex + 1} dari ${count}: ${labels[slideIndex] ?? `Sertifikat ${slideIndex + 1}`}`}
+                aria-hidden={enhanced && active !== slideIndex ? true : undefined}
+                inert={enhanced && active !== slideIndex}
+              >
+                {child}
+              </div>
+            );
+          })}
         </div>
       </div>
 
